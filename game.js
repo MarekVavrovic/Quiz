@@ -34,8 +34,7 @@ fetch(
 
 
 
-//CONSTANTS
-const CORRECT_BONUS = 1;
+const BONUS = 1;
 const MAX_QUESTIONS = 15;
 
 startGame = () => {
@@ -86,17 +85,17 @@ choices.forEach((choice) => {
     const selectedChoice = e.target;
     const selectedAnswer = selectedChoice.dataset["number"];
 
-    const classToApply =
+    const correctIncorrect =
       selectedAnswer == currentQuestion.answer ? "correct" : "incorrect";
 
-    if (classToApply === "correct") {
-      incrementScore(CORRECT_BONUS);
+    if (correctIncorrect === "correct") {
+      incrementScore(BONUS);
     }
 
-    selectedChoice.parentElement.classList.add(classToApply);
+    selectedChoice.parentElement.classList.add(correctIncorrect);
 
     setTimeout(() => {
-      selectedChoice.parentElement.classList.remove(classToApply);
+      selectedChoice.parentElement.classList.remove(correctIncorrect);
       getNewQuestion();
     }, 500);
   });
